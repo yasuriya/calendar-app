@@ -54,6 +54,8 @@
   align-items: center;
   justify-content: space-around;
   opacity: 0.6;
+  font-size: 22px;
+  line-height: 40px;
 
   &__day-name {
     font-size: 14px;
@@ -61,7 +63,11 @@
   }
 
   &__day-number {
-    font-size: 22px;
+    text-align: center;
+    background-color: aliceblue;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
   }
 }
 

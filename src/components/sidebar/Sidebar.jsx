@@ -10,7 +10,7 @@ const Sidebar = (props) => {
   return (
     <div className="calendar__time-scale">
       {hours.map((hour) => (
-        <div key={Math.floor(Math.random() * 1000)} className="time-slot">
+        <div key={Math.floor(Math.random() * 1000000000)} className="time-slot">
           <span className="time-slot__time">{`${hour}:00`}</span>
         </div>
       ))}
