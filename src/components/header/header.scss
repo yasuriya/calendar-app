@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  height: 70px;
+  padding: 0 48px;
+  align-items: center;
+  justify-content: center;
+  background-color: aliceblue;
+}
+
+.create-event-btn {
+  padding: 0 16px;
+
+  &__icon {
+    margin-right: 8px;
+  }
+}
+
+.navigation {
+  &__today-btn {
+    margin-left: 32px;
+    padding: 0 16px;
+  }
+
+  &__nav-icon {
+    font-size: 16px;
+    margin-left: 20px;
+  }
+
+  &__displayed-month {
+    margin-left: 10px;
+  }
+}
