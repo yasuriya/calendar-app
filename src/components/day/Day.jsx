@@ -1,12 +1,12 @@
-import React from 'react';
-import Hour from '../hour/Hour';
+import React from 'react'
+import Hour from '../hour/Hour'
 
-import './day.scss';
+import './day.scss'
 
-const Day = ({ dataDay, dayEvents }) => {
+const Day = ({ dataDay, dayEvents, modalToggle }) => {
   const hours = Array(24)
     .fill()
-    .map((val, index) => index);
+    .map((val, index) => index)
 
   return (
     <div className="calendar__day" data-day={dataDay}>
@@ -14,14 +14,19 @@ const Day = ({ dataDay, dayEvents }) => {
         //getting all events from the day we will render
         const hourEvents = dayEvents.filter(
           (event) => event.dateFrom.getHours() === hour
-        );
+        )
 
         return (
-          <Hour key={dataDay + hour} dataHour={hour} hourEvents={hourEvents} />
-        );
+          <Hour
+            key={dataDay + hour}
+            dataHour={hour}
+            hourEvents={hourEvents}
+            modalToggle={modalToggle}
+          />
+        )
       })}
     </div>
-  );
-};
+  )
+}
 
-export default Day;
+export default Day

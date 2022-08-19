@@ -2,15 +2,16 @@ import React, { useState } from 'react'
 import { getDateTime } from '../../utils/dateUtils'
 import events from '../../gateway/events'
 import './modal.scss'
+import moment from 'moment'
 
 const Modal = ({ modalToggle }) => {
   const [newEvent, setNewEvent] = useState({
-    id: new Date(),
+    id: events.length + 1,
     title: '',
     description: '',
-    date: '',
-    dateFrom: '',
-    dateTo: '',
+    date: moment(new Date()).format('YYYY-MM-DD'),
+    dateFrom: moment(new Date()).format('HH:15'),
+    dateTo: moment(new Date()).format('HH:30'),
   })
 
   const changeHandler = (e) => {
@@ -34,6 +35,7 @@ const Modal = ({ modalToggle }) => {
     })
     modalToggle()
   }
+
   const { id, title, description, date, dateFrom, dateTo } = newEvent
   return (
     <div className="modal overlay">

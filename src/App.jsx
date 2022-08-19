@@ -9,7 +9,6 @@ import {
 } from '../src/utils/dateUtils.js'
 
 import './common.scss'
-import Modal from './components/modal/Modal.jsx'
 
 const App = () => {
   const [weekStartDate, setWeekStartDate] = useState(new Date())
@@ -49,8 +48,11 @@ const App = () => {
         currentMonth={currentMonth}
         modalToggle={modalToggle}
       />
-      {visibility && <Modal modalToggle={modalToggle} />}
-      <Calendar weekDates={weekDates} />
+      <Calendar
+        weekDates={weekDates}
+        modalToggle={modalToggle}
+        visibility={visibility}
+      />
     </>
   )
 }
