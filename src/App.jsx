@@ -9,10 +9,12 @@ import {
 } from '../src/utils/dateUtils.js'
 
 import './common.scss'
+import Modal from './components/modal/Modal.jsx'
 
 const App = () => {
   const [weekStartDate, setWeekStartDate] = useState(new Date())
   const [currentMonth, setCurrentMonth] = useState(null)
+  const [visibility, setVisibility] = useState(false)
 
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate))
 
@@ -30,6 +32,10 @@ const App = () => {
     setWeekStartDate(new Date())
   }
 
+  const modalToggle = () => {
+    setVisibility(!visibility)
+  }
+
   useEffect(() => {
     setCurrentMonth(getCurrentMonth(weekDates))
   }, [weekDates])
@@ -41,7 +47,9 @@ const App = () => {
         prevWeek={prevWeek}
         nextWeek={nextWeek}
         currentMonth={currentMonth}
+        modalToggle={modalToggle}
       />
+      {visibility && <Modal modalToggle={modalToggle} />}
       <Calendar weekDates={weekDates} />
     </>
   )

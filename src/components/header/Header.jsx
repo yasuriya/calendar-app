@@ -2,11 +2,18 @@ import React from 'react'
 
 import './header.scss'
 
-const Header = ({ currentMonth, resetWeek, nextWeek, prevWeek }) => {
+const Header = ({
+  currentMonth,
+  resetWeek,
+  nextWeek,
+  prevWeek,
+  modalToggle,
+}) => {
   return (
     <header className="header">
-      <button className="button create-event-btn">
-        <i className="fas fa-plus create-event-btn__icon"></i>Create
+      <button className="button create-event-btn" onClick={modalToggle}>
+        <i className="fas fa-plus create-event-btn__icon"></i>
+        Create
       </button>
       <div className="navigation">
         <button className="navigation__today-btn button" onClick={resetWeek}>

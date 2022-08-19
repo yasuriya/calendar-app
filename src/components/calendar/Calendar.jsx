@@ -9,7 +9,6 @@ import './calendar.scss'
 
 const Calendar = ({ weekDates }) => {
   const [eventState, setEventState] = useState(events)
-  console.log(eventState)
 
   return (
     <section className="calendar">
