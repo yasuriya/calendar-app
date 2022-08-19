@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import Header from './components/header/Header.jsx'
 import Calendar from './components/calendar/Calendar.jsx'
-import moment from 'moment'
 
-import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js'
+import {
+  getWeekStartDate,
+  generateWeekRange,
+  getCurrentMonth,
+} from '../src/utils/dateUtils.js'
 
 import './common.scss'
 
 const App = () => {
   const [weekStartDate, setWeekStartDate] = useState(new Date())
+  const [currentMonth, setCurrentMonth] = useState(null)
+
+  const weekDates = generateWeekRange(getWeekStartDate(weekStartDate))
 
   const nextWeek = () => {
     weekStartDate.setDate(weekStartDate.getDate() + 7)
@@ -24,8 +30,10 @@ const App = () => {
     setWeekStartDate(new Date())
   }
 
-  const currentMonth = moment(weekStartDate).format('MMMM')
-  const weekDates = generateWeekRange(getWeekStartDate(weekStartDate))
+  useEffect(() => {
+    setCurrentMonth(getCurrentMonth(weekDates))
+  }, [weekDates])
+
   return (
     <>
       <Header

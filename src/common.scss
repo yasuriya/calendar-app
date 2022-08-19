@@ -1,14 +1,15 @@
 .button {
   height: 40px;
-  border-radius: 8px;
+  border-radius: 50px;
   border: 1px solid #ccc;
   outline: none;
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
-  background-color: #add8e6;
-
-  box-shadow: 1px 1px 1px #ccc;
+  background-color: cornflowerblue;
+  color: #fff;
+  border: none;
+  box-shadow: 1px 1px 1px cornflowerblue;
 }
 
 .icon-button {
@@ -16,6 +17,7 @@
   border: none;
   cursor: pointer;
   background: transparent;
+  color: cornflowerblue;
 }
 
 .modal {
