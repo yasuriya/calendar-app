@@ -57,3 +57,14 @@ export const getCurrentMonth = (weekDates) => {
 
   return currentMonthText
 }
+
+export const isCurrentTime = (day, hour) => {
+  return (
+    moment(new Date()).format('DD') == day &&
+    moment(new Date()).format('HH') == hour
+  )
+}
+
+export const isToday = (day) => {
+  return moment(day).format('ll') === moment(new Date()).format('ll')
+}

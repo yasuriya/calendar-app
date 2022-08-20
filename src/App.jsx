@@ -31,7 +31,7 @@ const App = () => {
     setWeekStartDate(new Date())
   }
 
-  const modalToggle = () => {
+  const modalToggle = (e) => {
     setVisibility(!visibility)
   }
 
