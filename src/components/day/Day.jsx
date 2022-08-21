@@ -1,15 +1,19 @@
 import React from 'react'
 import Hour from '../hour/Hour'
-
 import './day.scss'
 
-const Day = ({ dayStart, dataDay, dayEvents, modalToggle, fetchEvents }) => {
+const Day = (props) => {
+  const { dayStart, dataDay, dayEvents, fetchEvents, setDefaultTime } = props
   const hours = Array(24)
     .fill()
     .map((val, index) => index)
 
   return (
-    <div className="calendar__day " data-day={dataDay}>
+    <div
+      className="calendar__day "
+      data-day={dataDay}
+      data-month={dayStart.getMonth()}
+    >
       {hours.map((hour) => {
         const hourEvents = dayEvents.filter(
           (event) => event.dateFrom.getHours() === hour
@@ -17,11 +21,11 @@ const Day = ({ dayStart, dataDay, dayEvents, modalToggle, fetchEvents }) => {
 
         return (
           <Hour
+            setDefaultTime={setDefaultTime}
             key={dataDay + hour}
             dataHour={hour}
             hourEvents={hourEvents}
             dayStart={dayStart}
-            modalToggle={modalToggle}
             fetchEvents={fetchEvents}
           />
         )

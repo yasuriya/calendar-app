@@ -1,14 +1,33 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { getCurrentMonth } from '../../utils/dateUtils'
 
 import './header.scss'
 
 const Header = ({
-  currentMonth,
-  resetWeek,
-  nextWeek,
-  prevWeek,
+  weekDates,
   modalToggle,
+  weekStartDate,
+  setWeekStartDate,
 }) => {
+  const [currentMonth, setCurrentMonth] = useState(null)
+  useEffect(() => {
+    setCurrentMonth(getCurrentMonth(weekDates))
+  }, [weekDates])
+
+  const nextWeek = () => {
+    weekStartDate.setDate(weekStartDate.getDate() + 7)
+    setWeekStartDate(new Date(weekStartDate))
+  }
+
+  const prevWeek = () => {
+    weekStartDate.setDate(weekStartDate.getDate() - 7)
+    setWeekStartDate(new Date(weekStartDate))
+  }
+
+  const resetWeek = () => {
+    setWeekStartDate(new Date())
+  }
+
   return (
     <header className="header">
       <button className="button create-event-btn" onClick={modalToggle}>

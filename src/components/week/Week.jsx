@@ -3,7 +3,8 @@ import Day from '../day/Day'
 
 import './week.scss'
 
-const Week = ({ weekDates, events, modalToggle, fetchEvents }) => {
+const Week = (props) => {
+  const { weekDates, events, fetchEvents, setDefaultTime } = props
   return (
     <div className="calendar__week">
       {weekDates.map((dayStart) => {
@@ -17,12 +18,12 @@ const Week = ({ weekDates, events, modalToggle, fetchEvents }) => {
 
         return (
           <Day
+            setDefaultTime={setDefaultTime}
             key={dayStart.getDate()}
             dataDay={dayStart.getDate()}
             dayStart={dayStart}
             dayEvents={dayEvents}
             fetchEvents={fetchEvents}
-            modalToggle={modalToggle}
           />
         )
       })}

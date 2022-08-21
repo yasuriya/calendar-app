@@ -6,19 +6,10 @@ import {
   timeMultiplicityIsValid,
 } from '../../utils/validation'
 import './modal.scss'
-import moment from 'moment'
 import { postEvents } from '../../gateway/gateWay'
 
-const Modal = ({ modalToggle, fetchEvents, eventState }) => {
-  const [newEvent, setNewEvent] = useState({
-    id: '',
-    title: '',
-    description: '',
-    date: moment(new Date()).format('YYYY-MM-DD'),
-    dateFrom: `${new Date().getHours()}:00`,
-    dateTo: `${new Date().getHours() + 1}:00`,
-  })
-
+const Modal = (props) => {
+  const { modalToggle, fetchEvents, eventState, newEvent, setNewEvent } = props
   const { id, title, description, date, dateFrom, dateTo } = newEvent
 
   const changeHandler = (e) => {

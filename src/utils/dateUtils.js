@@ -81,3 +81,18 @@ export const eventAtSameTime = (eventsArr, from, to, date) => {
     )
   })
 }
+
+export const setTimeByDefault = (e) => {
+  const timeFrom = Number(e.target.dataset.time) - 1
+  const timeTo = Number(e.target.dataset.time)
+  const day = Number(e.target.closest('.calendar__day').dataset.day)
+  const month = Number(e.target.closest('.calendar__day').dataset.month) + 1
+
+  const defaultDate = `${new Date().getFullYear()}-${
+    month <= 9 ? `0${month}` : `${month}`
+  }-${day < 9 ? `0${day}` : `${day}`}`
+  const defaultDateFrom = `${timeFrom <= 9 ? `0${timeFrom}` : timeFrom}:00`
+  const defaultDateTo = `${timeTo <= 9 ? `0${timeTo}` : timeTo}:00`
+
+  return [defaultDate, defaultDateFrom, defaultDateTo]
+}

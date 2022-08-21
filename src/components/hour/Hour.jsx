@@ -3,7 +3,8 @@ import moment from 'moment'
 import Event from '../event/Event'
 import { formatMins, isCurrentTime } from '../../../src/utils/dateUtils.js'
 
-const Hour = ({ dataHour, hourEvents, modalToggle, dayStart, fetchEvents }) => {
+const Hour = (props) => {
+  const { dataHour, hourEvents, dayStart, fetchEvents, setDefaultTime } = props
   const [currentTime, setCurrentTime] = useState(
     moment(new Date()).format('mm')
   )
@@ -22,7 +23,7 @@ const Hour = ({ dataHour, hourEvents, modalToggle, dayStart, fetchEvents }) => {
     <div
       className="calendar__time-slot "
       data-time={dataHour + 1}
-      onClick={modalToggle}
+      onClick={setDefaultTime}
     >
       {isCurrentTime(dayStart, dataHour) && (
         <div
