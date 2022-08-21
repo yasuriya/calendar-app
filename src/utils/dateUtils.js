@@ -3,10 +3,7 @@ import moment from 'moment'
 export const getWeekStartDate = (date) => {
   const dateCopy = new Date(date)
   const dayOfWeek = dateCopy.getDay()
-  const difference =
-    dayOfWeek === 0
-      ? -6 // for Sunday
-      : 1 - dayOfWeek
+  const difference = dayOfWeek === 0 ? -6 : 1 - dayOfWeek
 
   const monday = new Date(dateCopy.setDate(date.getDate() + difference))
   return new Date(monday.getFullYear(), monday.getMonth(), monday.getDate())
@@ -60,11 +57,27 @@ export const getCurrentMonth = (weekDates) => {
 
 export const isCurrentTime = (day, hour) => {
   return (
-    moment(new Date()).format('DD') == day &&
+    moment(new Date()).format('L') == moment(day).format('L') &&
     moment(new Date()).format('HH') == hour
   )
 }
 
 export const isToday = (day) => {
   return moment(day).format('ll') === moment(new Date()).format('ll')
+}
+
+export const eventAtSameTime = (eventsArr, from, to, date) => {
+  return eventsArr.some((event) => {
+    const plannedEventFrom = event.dateFrom.getTime()
+    const plannedEventTo = event.dateTo.getTime()
+
+    const newEventFrom = getDateTime(date, from).getTime()
+    const newEventTo = getDateTime(date, to).getTime()
+
+    return (
+      (newEventFrom > plannedEventFrom && newEventFrom < plannedEventTo) ||
+      (newEventTo > plannedEventFrom && newEventTo < plannedEventTo) ||
+      (newEventFrom < plannedEventTo && newEventTo > plannedEventFrom)
+    )
+  })
 }

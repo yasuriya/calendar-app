@@ -1,6 +1,6 @@
 .event {
   position: absolute;
-  width: 80%;
+  width: 95%;
   background-color: cornflowerblue;
   z-index: 1;
   border-radius: 8px;
@@ -16,9 +16,9 @@
   }
 
   &:hover {
-    font-weight: bold;
     background-color: blue;
     cursor: pointer;
+    z-index: 2;
   }
 }
 

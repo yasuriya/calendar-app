@@ -3,7 +3,7 @@ import moment from 'moment'
 import Event from '../event/Event'
 import { formatMins, isCurrentTime } from '../../../src/utils/dateUtils.js'
 
-const Hour = ({ dataHour, hourEvents, modalToggle, dataDay }) => {
+const Hour = ({ dataHour, hourEvents, modalToggle, dayStart, fetchEvents }) => {
   const [currentTime, setCurrentTime] = useState(
     moment(new Date()).format('mm')
   )
@@ -24,7 +24,7 @@ const Hour = ({ dataHour, hourEvents, modalToggle, dataDay }) => {
       data-time={dataHour + 1}
       onClick={modalToggle}
     >
-      {isCurrentTime(dataDay, dataHour) && (
+      {isCurrentTime(dayStart, dataHour) && (
         <div
           className="red-line"
           style={{
@@ -43,10 +43,13 @@ const Hour = ({ dataHour, hourEvents, modalToggle, dataDay }) => {
         return (
           <Event
             key={id}
+            eventId={id}
             height={(dateTo.getTime() - dateFrom.getTime()) / (1000 * 60)}
             marginTop={dateFrom.getMinutes()}
             time={`${eventStart} - ${eventEnd}`}
+            dateFrom={dateFrom}
             title={title}
+            fetchEvents={fetchEvents}
           />
         )
       })}

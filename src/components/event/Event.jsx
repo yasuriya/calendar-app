@@ -2,11 +2,13 @@ import React from 'react'
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
-
+import { deleteEvents } from '../../gateway/gateWay'
+import { timeBeforeRemoveIsValid } from '../../utils/validation'
 import './event.scss'
 
-const Event = ({ height, marginTop, title, time }) => {
-  const [eventState, setEventState] = useState(true)
+const Event = (props) => {
+  const { height, marginTop, title, time, eventId, fetchEvents, dateFrom } =
+    props
   const [deleteBtn, setDeleteBtn] = useState(false)
 
   const eventStyle = {
@@ -15,32 +17,34 @@ const Event = ({ height, marginTop, title, time }) => {
   }
 
   const handleEventState = (e) => {
-    e.stopPropagation()
-    setEventState(false)
+    if (timeBeforeRemoveIsValid(dateFrom)) {
+      alert('You can not delete event less than 15 minutes before it starts!')
+      return
+    }
+
+    deleteEvents(eventId).then(() => fetchEvents())
   }
 
   const handleDeleteBtn = (e) => {
     e.stopPropagation()
+
     setDeleteBtn(!deleteBtn)
   }
-
   return (
-    eventState && (
-      <>
-        <div style={eventStyle} className="event" onClick={handleDeleteBtn}>
-          <div className="event__title">{title}</div>
-          <div className="event__time">{time}</div>
-          {deleteBtn && (
-            <>
-              <div className="overlay"></div>
-              <button className="delete-event-btn" onClick={handleEventState}>
-                <FontAwesomeIcon icon={faTrashCan} />
-              </button>
-            </>
-          )}
-        </div>
-      </>
-    )
+    <>
+      <div style={eventStyle} className="event" onClick={handleDeleteBtn}>
+        <div className="event__title">{title}</div>
+        <div className="event__time">{time}</div>
+        {deleteBtn && (
+          <>
+            <div className="overlay"></div>
+            <button className="delete-event-btn" onClick={handleEventState}>
+              <FontAwesomeIcon icon={faTrashCan} />
+            </button>
+          </>
+        )}
+      </div>
+    </>
   )
 }
 

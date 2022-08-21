@@ -1,18 +1,25 @@
 import React, { useState } from 'react'
-import { getDateTime } from '../../utils/dateUtils'
-import events from '../../gateway/events'
+import { getDateTime, eventAtSameTime } from '../../utils/dateUtils'
+import {
+  durationIsValid,
+  timeRangeisValid,
+  timeMultiplicityIsValid,
+} from '../../utils/validation'
 import './modal.scss'
 import moment from 'moment'
+import { postEvents } from '../../gateway/gateWay'
 
-const Modal = ({ modalToggle }) => {
+const Modal = ({ modalToggle, fetchEvents, eventState }) => {
   const [newEvent, setNewEvent] = useState({
-    id: events.length + 1,
+    id: '',
     title: '',
     description: '',
     date: moment(new Date()).format('YYYY-MM-DD'),
-    dateFrom: moment(new Date()).format('HH:15'),
-    dateTo: moment(new Date()).format('HH:30'),
+    dateFrom: `${new Date().getHours()}:00`,
+    dateTo: `${new Date().getHours() + 1}:00`,
   })
+
+  const { id, title, description, date, dateFrom, dateTo } = newEvent
 
   const changeHandler = (e) => {
     const { name, value } = e.target
@@ -26,17 +33,37 @@ const Modal = ({ modalToggle }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    events.push({
+    if (eventAtSameTime(eventState, dateFrom, dateTo, date)) {
+      alert('Time slot is already booked. Please choose another one!')
+      return
+    }
+
+    if (timeRangeisValid(dateFrom, dateTo)) {
+      alert('Set correct duration of event please!')
+      return
+    }
+
+    if (durationIsValid(dateFrom, dateTo)) {
+      alert('Your event can not be longer than 6 hours')
+      return
+    }
+
+    if (timeMultiplicityIsValid(dateFrom, dateTo)) {
+      alert('Your event time must be divisible by 15 minutes')
+      return
+    }
+
+    postEvents({
       id,
       title,
       description,
       dateFrom: getDateTime(date, dateFrom),
       dateTo: getDateTime(date, dateTo),
-    })
+    }).then(() => fetchEvents())
+
     modalToggle()
   }
 
-  const { id, title, description, date, dateFrom, dateTo } = newEvent
   return (
     <div className="modal overlay">
       <div className="modal__content">
@@ -52,6 +79,7 @@ const Modal = ({ modalToggle }) => {
               className="event-form__field"
               onChange={changeHandler}
               value={title}
+              required
             />
             <div className="event-form__time">
               <input

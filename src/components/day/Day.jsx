@@ -3,7 +3,7 @@ import Hour from '../hour/Hour'
 
 import './day.scss'
 
-const Day = ({ dataDay, dayEvents, modalToggle }) => {
+const Day = ({ dayStart, dataDay, dayEvents, modalToggle, fetchEvents }) => {
   const hours = Array(24)
     .fill()
     .map((val, index) => index)
@@ -11,7 +11,6 @@ const Day = ({ dataDay, dayEvents, modalToggle }) => {
   return (
     <div className="calendar__day " data-day={dataDay}>
       {hours.map((hour) => {
-        //getting all events from the day we will render
         const hourEvents = dayEvents.filter(
           (event) => event.dateFrom.getHours() === hour
         )
@@ -21,8 +20,9 @@ const Day = ({ dataDay, dayEvents, modalToggle }) => {
             key={dataDay + hour}
             dataHour={hour}
             hourEvents={hourEvents}
+            dayStart={dayStart}
             modalToggle={modalToggle}
-            dataDay={dataDay}
+            fetchEvents={fetchEvents}
           />
         )
       })}
