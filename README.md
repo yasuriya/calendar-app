@@ -1,7 +1,7 @@
 <h1>Calendar Project</h1>
 <h2> <a href="https://verdant-alfajores-de1ff4.netlify.app"><b>Site link</b></a> </h2>
 
- <h4>The tech stack is: </h4>
+ <h3>The tech stack is: </h3>
 <ul> 
   <li><a href="https://en.wikipedia.org/wiki/HTML5">HTML5 </a> </li>
   <li><a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">CSS3 </a> </li>
@@ -13,12 +13,12 @@
   <li><a href="https://webpack.js.org/">Webpack</a> </li>
   <li><a href="https://www.npmjs.com/">Node Package Manager</a> </li>
   <li><a href="https://momentjs.com/">Moment JS</a> </li>
-  <li><a href="https://en.wikipedia.org/wiki/Representational_state_transfer"></a>REST API </li>
+  <li><a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST API</a> </li>
 </ul>
 
 <h2><b>Scripts:</b></h2>
 
- ### `npm start`
+ `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -26,7 +26,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm run build`
+`npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
