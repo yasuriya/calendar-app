@@ -17,7 +17,7 @@ const Event = (props) => {
     marginTop,
   }
 
-  const handleEventState = (e) => {
+  const handleEventState = () => {
     if (timeBeforeRemoveIsValid(dateFrom)) {
       alert('You can not delete event less than 15 minutes before it starts!')
       return

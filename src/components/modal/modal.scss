@@ -57,6 +57,11 @@
     background-color: cornflowerblue;
     border: none;
     padding: 8px 16px;
+    transition: 0.5s;
     border-radius: 8px;
+    cursor: pointer;
+    &:hover {
+      background-color: blue;
+    }
   }
 }
