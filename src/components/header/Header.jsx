@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getCurrentMonth } from '../../utils/dateUtils'
+import moment from 'moment'
 
 import './header.scss'
 
@@ -8,6 +9,7 @@ const Header = ({
   modalToggle,
   weekStartDate,
   setWeekStartDate,
+  setNewEvent,
 }) => {
   const [currentMonth, setCurrentMonth] = useState(null)
   useEffect(() => {
@@ -28,9 +30,22 @@ const Header = ({
     setWeekStartDate(new Date())
   }
 
+  const handleModal = () => {
+    modalToggle()
+
+    setNewEvent({
+      id: '',
+      title: '',
+      description: '',
+      date: moment(new Date()).format('YYYY-MM-DD'),
+      dateFrom: `${new Date().getHours()}:00`,
+      dateTo: `${new Date().getHours() + 1}:00`,
+    })
+  }
+
   return (
     <header className="header">
-      <button className="button create-event-btn" onClick={modalToggle}>
+      <button className="button create-event-btn" onClick={handleModal}>
         <i className="fas fa-plus create-event-btn__icon"></i>
         Create
       </button>

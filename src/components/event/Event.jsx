@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { faHelmetUn, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { deleteEvents } from '../../gateway/gateWay'
 import { timeBeforeRemoveIsValid } from '../../utils/validation'
 import './event.scss'

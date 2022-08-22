@@ -4,21 +4,18 @@ import Navigation from './../navigation/Navigation'
 import Week from '../week/Week'
 import Sidebar from '../sidebar/Sidebar'
 import { getEvents } from '../../gateway/gateWay'
-import moment from 'moment'
 import { setTimeByDefault } from '../../utils/dateUtils'
 
 import './calendar.scss'
 
-const Calendar = ({ weekDates, visibility, modalToggle }) => {
+const Calendar = ({
+  weekDates,
+  visibility,
+  modalToggle,
+  newEvent,
+  setNewEvent,
+}) => {
   const [eventState, setEventState] = useState([])
-  const [newEvent, setNewEvent] = useState({
-    id: '',
-    title: '',
-    description: '',
-    date: moment(new Date()).format('YYYY-MM-DD'),
-    dateFrom: `${new Date().getHours()}:00`,
-    dateTo: `${new Date().getHours() + 1}:00`,
-  })
 
   const setDefaultTime = (e) => {
     const [defaultDate, defaultDateFrom, defaultDateTo] = setTimeByDefault(e)
