@@ -1,7 +1,7 @@
 <h1>Calendar Project</h1>
-<h2> <a href="https://verdant-alfajores-de1ff4.netlify.app"><b>Site link</b></a> </h2>
+<h3> <a href="https://verdant-alfajores-de1ff4.netlify.app"><b>Site link</b></a> </h3>
 
- <h3>The tech stack is: </h3>
+ <h2>The tech stack is: </h2>
 <ul> 
   <li><a href="https://en.wikipedia.org/wiki/HTML5">HTML5 </a> </li>
   <li><a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">CSS3 </a> </li>
@@ -21,7 +21,7 @@
  `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:8080](http://localhost:8080) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
@@ -34,7 +34,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 <h2><b>Author:</b></h2>
 <h3> <i>Anastasiia Shevtsova </i></h3>
