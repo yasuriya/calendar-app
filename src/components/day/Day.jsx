@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Hour from '../hour/Hour'
 import './day.scss'
 
@@ -35,3 +36,11 @@ const Day = (props) => {
 }
 
 export default Day
+
+Day.propTypes = {
+  fetchEvents: PropTypes.func.isRequired,
+  setDefaultTime: PropTypes.func.isRequired,
+  dayStart: PropTypes.object.isRequired,
+  dataDay: PropTypes.number.isRequired,
+  dayEvents: PropTypes.array.isRequired,
+}

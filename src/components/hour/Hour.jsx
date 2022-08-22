@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import moment from 'moment'
 import Event from '../event/Event'
 import { formatMins, isCurrentTime } from '../../../src/utils/dateUtils.js'
@@ -59,3 +60,11 @@ const Hour = (props) => {
 }
 
 export default Hour
+
+Hour.propTypes = {
+  fetchEvents: PropTypes.func.isRequired,
+  setDefaultTime: PropTypes.func.isRequired,
+  dayStart: PropTypes.object.isRequired,
+  dataHour: PropTypes.number.isRequired,
+  hourEvents: PropTypes.array.isRequired,
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { getCurrentMonth } from '../../utils/dateUtils'
+import PropTypes from 'prop-types'
 import moment from 'moment'
+import { getCurrentMonth } from '../../utils/dateUtils'
 
 import './header.scss'
 
@@ -66,3 +67,11 @@ const Header = ({
 }
 
 export default Header
+
+Header.propTypes = {
+  weekDates: PropTypes.array.isRequired,
+  modalToggle: PropTypes.func.isRequired,
+  weekStartDate: PropTypes.object.isRequired,
+  setWeekStartDate: PropTypes.func.isRequired,
+  setNewEvent: PropTypes.func.isRequired,
+}

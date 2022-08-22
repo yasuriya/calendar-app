@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import Modal from '../modal/Modal'
 import Navigation from './../navigation/Navigation'
 import Week from '../week/Week'
@@ -67,3 +68,11 @@ const Calendar = ({
 }
 
 export default Calendar
+
+Calendar.propTypes = {
+  weekDates: PropTypes.array.isRequired,
+  modalToggle: PropTypes.func.isRequired,
+  visibility: PropTypes.bool.isRequired,
+  newEvent: PropTypes.object.isRequired,
+  setNewEvent: PropTypes.func.isRequired,
+}

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { getDateTime, eventAtSameTime } from '../../utils/dateUtils'
 import {
   durationIsValid,
@@ -114,3 +115,11 @@ const Modal = (props) => {
 }
 
 export default Modal
+
+Modal.propTypes = {
+  fetchEvents: PropTypes.func.isRequired,
+  modalToggle: PropTypes.func.isRequired,
+  eventState: PropTypes.array.isRequired,
+  newEvent: PropTypes.object.isRequired,
+  setNewEvent: PropTypes.func.isRequired,
+}

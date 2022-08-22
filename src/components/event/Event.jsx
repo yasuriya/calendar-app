@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHelmetUn, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import PropTypes from 'prop-types'
 import { deleteEvents } from '../../gateway/gateWay'
 import { timeBeforeRemoveIsValid } from '../../utils/validation'
 import './event.scss'
@@ -49,3 +50,13 @@ const Event = (props) => {
 }
 
 export default Event
+
+Event.propTypes = {
+  fetchEvents: PropTypes.func.isRequired,
+  height: PropTypes.number.isRequired,
+  marginTop: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
+  eventId: PropTypes.number.isRequired,
+  dateFrom: PropTypes.object.isRequired,
+}

@@ -28,10 +28,9 @@ export const timeBeforeRemoveIsValid = (from) => {
   const currentHour = moment(currentTime).format('HH')
 
   const timeDifference = Number(moment(eventTime - currentTime).format('mm'))
-  const timeDifference1 = Number(moment(currentTime - eventTime).format('mm'))
+
   return (
-    timeDifference1 > 0 &&
-    timeDifference < 15 &&
+    timeDifference <= 15 &&
     currentDate === eventDate &&
     eventHour === currentHour
   )
