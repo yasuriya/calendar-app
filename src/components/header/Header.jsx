@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import { getCurrentMonth } from '../../utils/dateUtils'
+import {
+  getCurrentMonth,
+  defaultHourFrom,
+  defaultHourTo,
+} from '../../utils/dateUtils'
 
 import './header.scss'
 
@@ -39,8 +43,8 @@ const Header = ({
       title: '',
       description: '',
       date: moment(new Date()).format('YYYY-MM-DD'),
-      dateFrom: `${new Date().getHours()}:00`,
-      dateTo: `${new Date().getHours() + 1}:00`,
+      dateFrom: defaultHourFrom,
+      dateTo: defaultHourTo,
     })
   }
 

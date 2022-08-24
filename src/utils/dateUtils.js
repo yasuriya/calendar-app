@@ -98,3 +98,14 @@ export const setTimeByDefault = (e) => {
 
   return [defaultDate, defaultDateFrom, defaultDateTo]
 }
+
+export const defaultHourFrom = `${
+  new Date().getHours() <= 9
+    ? '0' + new Date().getHours()
+    : new Date().getHours()
+}:00`
+export const defaultHourTo = `${
+  new Date().getHours() + 1 <= 9
+    ? '0' + (new Date().getHours() + 1)
+    : new Date().getHours() + 1
+}:00`
