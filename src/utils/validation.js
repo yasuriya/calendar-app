@@ -36,9 +36,11 @@ export const timeBeforeRemoveIsValid = (from) => {
   )
 }
 
-export const eventTimeIsFuture = (from) => {
-  const eventTime = from.getTime()
-  const currentTime = new Date().getTime()
+export const eventTimeIsFuture = (from, hour) => {
+  const eventDate = from.getTime()
+  const currentDate = new Date().getTime()
+  const eventHour = hour
+  const currentHour = new Date().getHours()
 
-  return eventTime < currentTime
+  return eventDate < currentDate && eventHour <= currentHour
 }

@@ -22,7 +22,7 @@ const Hour = (props) => {
   }, [])
 
   const handleNewEvent = (e) => {
-    if (eventTimeIsFuture(dayStart)) {
+    if (eventTimeIsFuture(dayStart, dataHour)) {
       alert('You can not create events in the past!')
       return
     }
