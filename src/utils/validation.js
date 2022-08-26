@@ -1,7 +1,8 @@
 import moment from 'moment'
 
 export const timeRangeisValid = (from, to) => {
-  return Number(from.slice(0, 2)) > Number(to.slice(0, 2))
+  const defaultTo = to.slice(0, 2) == '00' ? '24' : to.slice(0, 2)
+  return Number(from.slice(0, 2)) > Number(defaultTo)
 }
 
 export const durationIsValid = (from, to) => {
@@ -28,7 +29,6 @@ export const timeBeforeRemoveIsValid = (from) => {
   const currentHour = moment(currentTime).format('HH')
 
   const timeDifference = Number(moment(eventTime - currentTime).format('mm'))
-  const diff2 = Number(moment(currentTime - eventTime).format('mm'))
 
   return (
     timeDifference <= 15 &&
@@ -38,10 +38,12 @@ export const timeBeforeRemoveIsValid = (from) => {
 }
 
 export const eventTimeIsPast = (date, hour) => {
-  const eventDate = new Date(date).getTime()
-  const currentDate = new Date().getTime()
-  const eventHour = Number(hour.slice(1, 2))
-  const currentHour = new Date().getDay()
+  const eventTime = new Date(date)
+  const currentTime = new Date()
 
-  return eventDate < currentDate && eventHour <= currentHour
+  const h = hour.split(':')
+
+  eventTime.setHours(h[0], h[1], 0, 0)
+
+  return eventTime < currentTime
 }

@@ -90,11 +90,11 @@ export const setTimeByDefault = (e) => {
 
   const defaultDate = `${new Date().getFullYear()}-${
     month <= 9 ? `0${month}` : `${month}`
-  }-${day < 9 ? `0${day}` : `${day}`}`
-  const defaultDateFrom = `${timeFrom <= 9 ? `0${timeFrom}` : timeFrom}:00`
+  }-${day <= 9 ? `0${day}` : `${day}`}`
+  const defaultDateFrom = `${timeFrom <= 9 ? `0${timeFrom}` : timeFrom}:30`
   const defaultDateTo = `${
     timeTo <= 9 ? `0${timeTo}` : `${timeTo == 24 ? '00' : timeTo}`
-  }:00`
+  }:30`
 
   return [defaultDate, defaultDateFrom, defaultDateTo]
 }
