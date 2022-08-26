@@ -5,6 +5,7 @@ import {
   durationIsValid,
   timeRangeisValid,
   timeMultiplicityIsValid,
+  eventTimeIsPast,
 } from '../../utils/validation'
 import './modal.scss'
 import { postEvents } from '../../gateway/gateWay'
@@ -25,6 +26,10 @@ const Modal = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    if (eventTimeIsPast(date, dateFrom)) {
+      alert('You can not create events in the past!')
+      return
+    }
     if (eventAtSameTime(eventState, dateFrom, dateTo, date)) {
       alert('Time slot is already booked. Please choose another one!')
       return

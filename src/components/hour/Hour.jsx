@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import Event from '../event/Event'
 import { formatMins, isCurrentTime } from '../../../src/utils/dateUtils.js'
-import { eventTimeIsFuture } from '../../utils/validation'
 
 const Hour = (props) => {
   const { dataHour, hourEvents, dayStart, fetchEvents, setDefaultTime } = props
@@ -21,20 +20,11 @@ const Hour = (props) => {
     }
   }, [])
 
-  const handleNewEvent = (e) => {
-    if (eventTimeIsFuture(dayStart, dataHour)) {
-      alert('You can not create events in the past!')
-      return
-    }
-
-    setDefaultTime(e)
-  }
-
   return (
     <div
       className="calendar__time-slot "
       data-time={dataHour + 1}
-      onClick={handleNewEvent}
+      onClick={setDefaultTime}
     >
       {isCurrentTime(dayStart, dataHour) && (
         <div
