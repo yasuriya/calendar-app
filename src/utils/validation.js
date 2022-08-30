@@ -19,22 +19,10 @@ export const timeMultiplicityIsValid = (from, to) => {
 }
 
 export const timeBeforeRemoveIsValid = (from) => {
-  const eventTime = moment(from.getTime())
-  const currentTime = new Date().getTime()
+  const currentTime = moment().format('YYYY-MM-DD HH:mm')
+  const timeDifference = moment(from).diff(currentTime, 'minutes')
 
-  const eventDate = moment(eventTime).format('l')
-  const currentDate = moment(currentTime).format('l')
-
-  const eventHour = moment(eventTime).format('HH')
-  const currentHour = moment(currentTime).format('HH')
-
-  const timeDifference = Number(moment(eventTime - currentTime).format('mm'))
-
-  return (
-    timeDifference <= 15 &&
-    currentDate === eventDate &&
-    eventHour === currentHour
-  )
+  return timeDifference <= 15 && timeDifference >= 0
 }
 
 export const eventTimeIsPast = (date, hour) => {
