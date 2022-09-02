@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { getDateTime, eventAtSameTime } from '../../utils/dateUtils'
+import {
+  getDateTime,
+  eventAtSameTime,
+  defaultModalTime,
+} from '../../utils/dateUtils'
 import {
   durationIsValid,
   timeRangeisValid,
@@ -15,10 +19,9 @@ const Modal = ({
   setModalVisibility,
   fetchEvents,
   eventState,
-  newEvent,
-  setNewEvent,
 }) => {
-  const { id, title, description, date, dateFrom, dateTo } = newEvent
+  const [newEvent, setNewEvent] = useState(defaultModalTime)
+  const { title, description, date, dateFrom, dateTo } = newEvent
 
   const handleInputValue = (e) => {
     const { name, value } = e.target
@@ -29,7 +32,7 @@ const Modal = ({
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmitForm = (e) => {
     e.preventDefault()
 
     if (eventTimeIsPast(date, dateFrom)) {
@@ -57,9 +60,7 @@ const Modal = ({
     }
 
     postEvent({
-      id,
-      title,
-      description,
+      ...newEvent,
       dateFrom: getDateTime(date, dateFrom),
       dateTo: getDateTime(date, dateTo),
     }).then(() => fetchEvents())
@@ -77,7 +78,7 @@ const Modal = ({
           >
             +
           </button>
-          <form className="event-form" onSubmit={handleSubmit}>
+          <form className="event-form" onSubmit={handleSubmitForm}>
             <input
               type="text"
               name="title"
@@ -135,6 +136,4 @@ Modal.propTypes = {
   setModalVisibility: PropTypes.func.isRequired,
   modalVisibility: PropTypes.bool.isRequired,
   eventState: PropTypes.array.isRequired,
-  newEvent: PropTypes.object.isRequired,
-  setNewEvent: PropTypes.func.isRequired,
 }

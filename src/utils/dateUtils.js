@@ -82,32 +82,22 @@ export const eventAtSameTime = (eventsArr, from, to, date) => {
   })
 }
 
-export const setTimeByDefault = (e) => {
-  const timeFrom = Number(e.target.dataset.time) - 1
-  const timeTo = Number(e.target.dataset.time)
-  const day = Number(e.target.closest('.calendar__day').dataset.day)
-  const month = Number(e.target.closest('.calendar__day').dataset.month) + 1
-
-  const defaultDate = `${new Date().getFullYear()}-${
-    month <= 9 ? `0${month}` : `${month}`
-  }-${day <= 9 ? `0${day}` : `${day}`}`
-
-  const defaultDateFrom = `${timeFrom <= 9 ? `0${timeFrom}` : timeFrom}:15`
-
-  const defaultDateTo = `${
-    timeTo <= 9 ? `0${timeTo}` : `${timeTo == 24 ? '00' : timeTo}`
-  }:15`
-
-  return [defaultDate, defaultDateFrom, defaultDateTo]
-}
-
-export const defaultHourFrom = `${
+const defaultHourFrom = `${
   new Date().getHours() <= 9
     ? '0' + new Date().getHours()
-    : new Date().getHours()
-}:00`
-export const defaultHourTo = `${
-  new Date().getHours() + 1 <= 9
-    ? '0' + (new Date().getHours() + 1)
     : new Date().getHours() + 1
 }:00`
+const defaultHourTo = `${
+  new Date().getHours() + 1 <= 9
+    ? '0' + (new Date().getHours() + 1)
+    : new Date().getHours() + 2
+}:00`
+
+export const defaultModalTime = {
+  id: '',
+  title: '',
+  description: '',
+  date: moment(new Date()).format('YYYY-MM-DD'),
+  dateFrom: defaultHourFrom,
+  dateTo: defaultHourTo,
+}

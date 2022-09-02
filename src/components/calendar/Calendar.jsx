@@ -5,33 +5,10 @@ import Navigation from './../navigation/Navigation'
 import Week from '../week/Week'
 import Sidebar from '../sidebar/Sidebar'
 import { getEvents } from '../../gateway/gateWay'
-import { setTimeByDefault } from '../../utils/dateUtils'
-
 import './calendar.scss'
 
-const Calendar = ({
-  weekDates,
-  modalVisibility,
-  setModalVisibility,
-  newEvent,
-  setNewEvent,
-}) => {
+const Calendar = ({ weekDates, modalVisibility, setModalVisibility }) => {
   const [eventState, setEventState] = useState([])
-
-  const setDefaultTime = (e) => {
-    const [defaultDate, defaultDateFrom, defaultDateTo] = setTimeByDefault(e)
-
-    setNewEvent({
-      id: '',
-      title: '',
-      description: '',
-      date: defaultDate,
-      dateFrom: defaultDateFrom,
-      dateTo: defaultDateTo,
-    })
-
-    setModalVisibility(!modalVisibility)
-  }
 
   const fetchEvents = () =>
     getEvents().then((eventsList) => setEventState(eventsList))
@@ -48,8 +25,6 @@ const Calendar = ({
           modalVisibility={modalVisibility}
           fetchEvents={fetchEvents}
           eventState={eventState}
-          newEvent={newEvent}
-          setNewEvent={setNewEvent}
         />
       )}
       <Navigation weekDates={weekDates} />
@@ -57,7 +32,8 @@ const Calendar = ({
         <div className="calendar__week-container">
           <Sidebar />
           <Week
-            setDefaultTime={setDefaultTime}
+            setModalVisibility={setModalVisibility}
+            modalVisibility={modalVisibility}
             weekDates={weekDates}
             events={eventState}
             fetchEvents={fetchEvents}
@@ -74,6 +50,4 @@ Calendar.propTypes = {
   weekDates: PropTypes.array.isRequired,
   setModalVisibility: PropTypes.func.isRequired,
   modalVisibility: PropTypes.bool.isRequired,
-  newEvent: PropTypes.object.isRequired,
-  setNewEvent: PropTypes.func.isRequired,
 }

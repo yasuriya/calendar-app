@@ -1,12 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
-import {
-  getCurrentMonth,
-  defaultHourFrom,
-  defaultHourTo,
-} from '../../utils/dateUtils'
-
+import { getCurrentMonth } from '../../utils/dateUtils'
 import './header.scss'
 
 const Header = ({
@@ -15,7 +9,6 @@ const Header = ({
   weekDates,
   weekStartDate,
   setWeekStartDate,
-  setNewEvent,
 }) => {
   const nextWeek = () => {
     weekStartDate.setDate(weekStartDate.getDate() + 7)
@@ -31,22 +24,12 @@ const Header = ({
     setWeekStartDate(new Date())
   }
 
-  const handleModal = () => {
-    setModalVisibility(!modalVisibility)
-
-    setNewEvent({
-      id: '',
-      title: '',
-      description: '',
-      date: moment(new Date()).format('YYYY-MM-DD'),
-      dateFrom: defaultHourFrom,
-      dateTo: defaultHourTo,
-    })
-  }
-
   return (
     <header className="header">
-      <button className="button create-event-btn" onClick={handleModal}>
+      <button
+        className="button create-event-btn"
+        onClick={() => setModalVisibility(!modalVisibility)}
+      >
         <i className="fas fa-plus create-event-btn__icon"></i>
         Create
       </button>
@@ -76,5 +59,4 @@ Header.propTypes = {
   modalVisibility: PropTypes.bool.isRequired,
   weekStartDate: PropTypes.object.isRequired,
   setWeekStartDate: PropTypes.func.isRequired,
-  setNewEvent: PropTypes.func.isRequired,
 }

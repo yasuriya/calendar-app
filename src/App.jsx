@@ -7,7 +7,6 @@ import './common.scss'
 const App = () => {
   const [modalVisibility, setModalVisibility] = useState(false)
   const [weekStartDate, setWeekStartDate] = useState(new Date())
-  const [newEvent, setNewEvent] = useState({})
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate))
 
   return (
@@ -18,11 +17,8 @@ const App = () => {
         modalVisibility={modalVisibility}
         weekStartDate={weekStartDate}
         setWeekStartDate={setWeekStartDate}
-        setNewEvent={setNewEvent}
       />
       <Calendar
-        newEvent={newEvent}
-        setNewEvent={setNewEvent}
         weekDates={weekDates}
         setModalVisibility={setModalVisibility}
         modalVisibility={modalVisibility}

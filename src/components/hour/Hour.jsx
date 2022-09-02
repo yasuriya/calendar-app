@@ -9,13 +9,16 @@ const Hour = ({
   hourEvents,
   dayStart,
   fetchEvents,
-  setDefaultTime,
+  setModalVisibility,
+  modalVisibility,
 }) => {
   return (
     <div
       className="calendar__time-slot "
       data-time={dataHour + 1}
-      onClick={setDefaultTime}
+      onClick={() => {
+        setModalVisibility(!modalVisibility)
+      }}
     >
       {isCurrentTime(dayStart, dataHour) && <RedLine />}
       {hourEvents.map(({ id, dateFrom, dateTo, title }) => {
@@ -47,8 +50,9 @@ export default Hour
 
 Hour.propTypes = {
   fetchEvents: PropTypes.func.isRequired,
-  setDefaultTime: PropTypes.func.isRequired,
   dayStart: PropTypes.object.isRequired,
   dataHour: PropTypes.number.isRequired,
   hourEvents: PropTypes.array.isRequired,
+  setModalVisibility: PropTypes.func.isRequired,
+  modalVisibility: PropTypes.bool.isRequired,
 }

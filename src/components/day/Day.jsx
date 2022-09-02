@@ -3,7 +3,14 @@ import PropTypes from 'prop-types'
 import Hour from '../hour/Hour'
 import './day.scss'
 
-const Day = ({ dayStart, dataDay, dayEvents, fetchEvents, setDefaultTime }) => {
+const Day = ({
+  dayStart,
+  dataDay,
+  dayEvents,
+  fetchEvents,
+  setModalVisibility,
+  modalVisibility,
+}) => {
   const hours = Array(24)
     .fill()
     .map((val, index) => index)
@@ -21,7 +28,8 @@ const Day = ({ dayStart, dataDay, dayEvents, fetchEvents, setDefaultTime }) => {
 
         return (
           <Hour
-            setDefaultTime={setDefaultTime}
+            setModalVisibility={setModalVisibility}
+            modalVisibility={modalVisibility}
             key={dataDay + hour}
             dataHour={hour}
             hourEvents={hourEvents}
@@ -38,8 +46,9 @@ export default Day
 
 Day.propTypes = {
   fetchEvents: PropTypes.func.isRequired,
-  setDefaultTime: PropTypes.func.isRequired,
   dayStart: PropTypes.object.isRequired,
   dataDay: PropTypes.number.isRequired,
   dayEvents: PropTypes.array.isRequired,
+  setModalVisibility: PropTypes.func.isRequired,
+  modalVisibility: PropTypes.bool.isRequired,
 }
