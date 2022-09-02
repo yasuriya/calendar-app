@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import Hour from '../hour/Hour'
 import './day.scss'
 
-const Day = (props) => {
-  const { dayStart, dataDay, dayEvents, fetchEvents, setDefaultTime } = props
+const Day = ({ dayStart, dataDay, dayEvents, fetchEvents, setDefaultTime }) => {
   const hours = Array(24)
     .fill()
     .map((val, index) => index)

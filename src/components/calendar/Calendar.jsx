@@ -11,8 +11,8 @@ import './calendar.scss'
 
 const Calendar = ({
   weekDates,
-  visibility,
-  modalToggle,
+  modalVisibility,
+  setModalVisibility,
   newEvent,
   setNewEvent,
 }) => {
@@ -30,7 +30,7 @@ const Calendar = ({
       dateTo: defaultDateTo,
     })
 
-    modalToggle()
+    setModalVisibility(!modalVisibility)
   }
 
   const fetchEvents = () =>
@@ -42,9 +42,10 @@ const Calendar = ({
 
   return (
     <section className="calendar">
-      {visibility && (
+      {modalVisibility && (
         <Modal
-          modalToggle={modalToggle}
+          setModalVisibility={setModalVisibility}
+          modalVisibility={modalVisibility}
           fetchEvents={fetchEvents}
           eventState={eventState}
           newEvent={newEvent}
@@ -71,8 +72,8 @@ export default Calendar
 
 Calendar.propTypes = {
   weekDates: PropTypes.array.isRequired,
-  modalToggle: PropTypes.func.isRequired,
-  visibility: PropTypes.bool.isRequired,
+  setModalVisibility: PropTypes.func.isRequired,
+  modalVisibility: PropTypes.bool.isRequired,
   newEvent: PropTypes.object.isRequired,
   setNewEvent: PropTypes.func.isRequired,
 }

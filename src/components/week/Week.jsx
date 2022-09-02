@@ -4,8 +4,7 @@ import Day from '../day/Day'
 
 import './week.scss'
 
-const Week = (props) => {
-  const { weekDates, events, fetchEvents, setDefaultTime } = props
+const Week = ({ weekDates, events, fetchEvents, setDefaultTime }) => {
   return (
     <div className="calendar__week">
       {weekDates.map((dayStart) => {

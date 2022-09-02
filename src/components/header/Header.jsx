@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import {
@@ -10,17 +10,13 @@ import {
 import './header.scss'
 
 const Header = ({
+  modalVisibility,
+  setModalVisibility,
   weekDates,
-  modalToggle,
   weekStartDate,
   setWeekStartDate,
   setNewEvent,
 }) => {
-  const [currentMonth, setCurrentMonth] = useState(null)
-  useEffect(() => {
-    setCurrentMonth(getCurrentMonth(weekDates))
-  }, [weekDates])
-
   const nextWeek = () => {
     weekStartDate.setDate(weekStartDate.getDate() + 7)
     setWeekStartDate(new Date(weekStartDate))
@@ -36,7 +32,7 @@ const Header = ({
   }
 
   const handleModal = () => {
-    modalToggle()
+    setModalVisibility(!modalVisibility)
 
     setNewEvent({
       id: '',
@@ -64,7 +60,9 @@ const Header = ({
         <button className="icon-button navigation__nav-icon" onClick={nextWeek}>
           <i className="fas fa-chevron-right"></i>
         </button>
-        <span className="navigation__displayed-month">{currentMonth}</span>
+        <span className="navigation__displayed-month">
+          {getCurrentMonth(weekDates)}
+        </span>
       </div>
     </header>
   )
@@ -74,7 +72,8 @@ export default Header
 
 Header.propTypes = {
   weekDates: PropTypes.array.isRequired,
-  modalToggle: PropTypes.func.isRequired,
+  setModalVisibility: PropTypes.func.isRequired,
+  modalVisibility: PropTypes.bool.isRequired,
   weekStartDate: PropTypes.object.isRequired,
   setWeekStartDate: PropTypes.func.isRequired,
   setNewEvent: PropTypes.func.isRequired,

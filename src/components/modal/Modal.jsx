@@ -8,13 +8,19 @@ import {
   eventTimeIsPast,
 } from '../../utils/validation'
 import './modal.scss'
-import { postEvents } from '../../gateway/gateWay'
+import { postEvent } from '../../gateway/gateWay'
 
-const Modal = (props) => {
-  const { modalToggle, fetchEvents, eventState, newEvent, setNewEvent } = props
+const Modal = ({
+  modalVisibility,
+  setModalVisibility,
+  fetchEvents,
+  eventState,
+  newEvent,
+  setNewEvent,
+}) => {
   const { id, title, description, date, dateFrom, dateTo } = newEvent
 
-  const changeHandler = (e) => {
+  const handleInputValue = (e) => {
     const { name, value } = e.target
 
     setNewEvent({
@@ -50,7 +56,7 @@ const Modal = (props) => {
       return
     }
 
-    postEvents({
+    postEvent({
       id,
       title,
       description,
@@ -58,14 +64,17 @@ const Modal = (props) => {
       dateTo: getDateTime(date, dateTo),
     }).then(() => fetchEvents())
 
-    modalToggle()
+    setModalVisibility(!modalVisibility)
   }
 
   return (
     <div className="modal overlay">
       <div className="modal__content">
         <div className="create-event">
-          <button className="create-event__close-btn" onClick={modalToggle}>
+          <button
+            className="create-event__close-btn"
+            onClick={() => setModalVisibility(!modalVisibility)}
+          >
             +
           </button>
           <form className="event-form" onSubmit={handleSubmit}>
@@ -74,7 +83,7 @@ const Modal = (props) => {
               name="title"
               placeholder="Title"
               className="event-form__field"
-              onChange={changeHandler}
+              onChange={handleInputValue}
               value={title}
               required
             />
@@ -83,14 +92,14 @@ const Modal = (props) => {
                 type="date"
                 name="date"
                 className="event-form__field"
-                onChange={changeHandler}
+                onChange={handleInputValue}
                 value={date}
               />
               <input
                 type="time"
                 name="dateFrom"
                 className="event-form__field"
-                onChange={changeHandler}
+                onChange={handleInputValue}
                 value={dateFrom}
               />
               <span>-</span>
@@ -98,7 +107,7 @@ const Modal = (props) => {
                 type="time"
                 name="dateTo"
                 className="event-form__field"
-                onChange={changeHandler}
+                onChange={handleInputValue}
                 value={dateTo}
               />
             </div>
@@ -106,7 +115,7 @@ const Modal = (props) => {
               name="description"
               placeholder="Description"
               className="event-form__field"
-              onChange={changeHandler}
+              onChange={handleInputValue}
               value={description}
             ></textarea>
             <button type="submit" className="event-form__submit-btn">
@@ -123,7 +132,8 @@ export default Modal
 
 Modal.propTypes = {
   fetchEvents: PropTypes.func.isRequired,
-  modalToggle: PropTypes.func.isRequired,
+  setModalVisibility: PropTypes.func.isRequired,
+  modalVisibility: PropTypes.bool.isRequired,
   eventState: PropTypes.array.isRequired,
   newEvent: PropTypes.object.isRequired,
   setNewEvent: PropTypes.func.isRequired,

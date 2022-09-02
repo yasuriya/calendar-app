@@ -23,14 +23,14 @@ export const getEvents = () => {
     .catch((error) => alert(error.message))
 }
 
-export const postEvents = (events) => {
+export const postEvent = (event) => {
   return fetch(API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(events),
+    body: JSON.stringify(event),
   })
 }
 
-export const deleteEvents = (id) => {
+export const deleteEvent = (id) => {
   return fetch(`${API_URL}/${id}`, { method: 'DELETE' })
 }

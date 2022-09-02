@@ -5,21 +5,17 @@ import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js'
 import './common.scss'
 
 const App = () => {
-  const [visibility, setVisibility] = useState(false)
+  const [modalVisibility, setModalVisibility] = useState(false)
   const [weekStartDate, setWeekStartDate] = useState(new Date())
   const [newEvent, setNewEvent] = useState({})
-
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate))
-
-  const modalToggle = () => {
-    setVisibility(!visibility)
-  }
 
   return (
     <>
       <Header
         weekDates={weekDates}
-        modalToggle={modalToggle}
+        setModalVisibility={setModalVisibility}
+        modalVisibility={modalVisibility}
         weekStartDate={weekStartDate}
         setWeekStartDate={setWeekStartDate}
         setNewEvent={setNewEvent}
@@ -28,8 +24,8 @@ const App = () => {
         newEvent={newEvent}
         setNewEvent={setNewEvent}
         weekDates={weekDates}
-        modalToggle={modalToggle}
-        visibility={visibility}
+        setModalVisibility={setModalVisibility}
+        modalVisibility={modalVisibility}
       />
     </>
   )
